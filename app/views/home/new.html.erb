@@ -1,0 +1,26 @@
+<h1>Login in Page</h1>
+
+
+<%= form_tag home_index_path do %>
+	<div>Sign In:</div>
+    <fieldset>
+	    <div>
+	        <%= label_tag :email, 'Email' %>
+		    <div>
+		        <%= text_field_tag :email, params[:email] %>
+		    </div>
+	    </div>
+	    <div>
+	        <%= label_tag :password, 'Password' %>
+		    <div>
+		        <%= password_field_tag :password, nil %>
+		    </div>
+	    </div>
+	    <div>
+	        <div>
+	            <%= submit_tag 'Log in' %>
+		        <%= link_to "Don't have an account?", new_user_path %>
+	        </div>
+	    </div>
+    </fieldset>
+<% end %>
