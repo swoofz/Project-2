@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class PostsController < ApplicationController
   def index
   end
 
@@ -12,5 +12,11 @@ class UserController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 end

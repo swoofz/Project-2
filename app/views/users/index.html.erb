@@ -1,0 +1,8 @@
+<h1>User Feed Page</h1>
+<p>Find me in app/views/user/index.html.erb</p>
+
+<article>
+  <% @users.each do |u| %>
+  <%= link_to(u.name, users_path(u.id)) %><br>
+  <% end %>
+</article>
