@@ -1,2 +1,19 @@
-<h1>User#new</h1>
+<h1>Create New User</h1>
 <p>Find me in app/views/user/new.html.erb</p>
+
+<%= form_for @user do |u| %>
+  <%= u.label :name %>
+    <%= u.text_field :name, placeholder: "Name here" %><br>
+  <%= u.label :user_name %>
+    <%= u.text_field :user_name, placeholder: "User Name" %><br>
+  <%= u.label :email %>
+    <%= u.text_field :email, placeholder: "Email" %><br>
+  <%= u.label :password %>
+    <%= u.password_field :password, placeholder: "Password" %><br>
+  <%= u.label :password_confimation %>
+    <%= u.password_field :password_confirmation, placeholder: "Confirm your password" %><br>
+  <%= u.submit "Create an Account" %>
+<% end %>
+
+<%= link_to "Home Page", root_path %><br>
+<%= link_to "User Feed Page", users_path %>
