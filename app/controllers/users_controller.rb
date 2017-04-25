@@ -4,11 +4,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @posts = Post.all
   end
 
   def show
     @user = User.find(params[:id])
-    1.times {@user.posts.build}
+    @post = Post.new
+    1.times { @user.posts.build }
   end
 
   def new
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    # @user.email = params[:user][:email].downcase!
+    @user.email = params[:user][:email].downcase!
     if @user.update_attributes(user_params)
       redirect_to user_path(@user)
     else
@@ -45,6 +47,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :user_name, :email, :password, posts_attributes: [:id, :title, :body, :_destroy])
+    params.require(:user).permit(:name, :user_name, :email, :password)
   end
 end

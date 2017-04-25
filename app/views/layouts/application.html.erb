@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <!-- checking if someone logged in or not and change the button accordingly to login or loggout -->
     <h3>
       <% if logged_in? %>
         <%= link_to 'Logout', logout_path, method: 'delete' %>

@@ -1,22 +1,19 @@
 <h1><%= @user.name.capitalize %> Profile Page</h1>
-<p>Find me in app/views/user/show.html.erb</p>
-
-
-<article>
-  <% @user.posts.each do |p| %>
-    <%= p.title %><br>
-    <%= p.body %>
-  <% end %>
-</article><br>
-<h2>Add new or edit posts</h2>
-<%= form_for @user do |p| %>
-  <%= p.fields_for :posts do |up| %><br>
-    <%= up.text_field :title %>
-    <%= up.text_field :body %>
-    <%= up.check_box :_destroy %>
-  <% end %>
-  <%= p.submit %>
-<% end %>
-
 <%= link_to "Feed", users_path %><br>
 <%= link_to "Edit Info", edit_user_path %>
+
+<!-- Making, changing, or deleting a post -->
+<h2>New Anime</h2>
+<%= form_for @post do |up| %><br>
+<%= up.text_field :title, placeholder: "Anime Name" %><br>
+<%= up.text_area :body, placeholder: "Description"%><br>
+<%= up.submit "Add new Anime to your list" %>
+<% end %>
+<!-- Print out each posts title and description of that users -->
+<h2><%= @user.name.capitalize %>'s Anime list</h2>
+<article>
+  <% @user.posts.each do |p| %>
+    <h4><%= p.title %><br></h4>
+    <%= p.body %><br>
+  <% end %>
+</article>
