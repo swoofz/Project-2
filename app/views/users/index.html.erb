@@ -3,7 +3,7 @@
 
 <article>
   <% @users.each do |u| %>
-  <%= link_to(u.name, user_path(u.id)) %><br>
+    <%= link_to(u.name, user_path(u.id)) %><br>
   <% end %>
 </article>
 
