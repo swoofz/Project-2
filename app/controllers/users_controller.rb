@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :authorize, only: [:index, :show]
+
   def index
     @users = User.all
   end
@@ -12,8 +15,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    u = User.new(user_params)
+    u.name = params[:user][:name]
+    u.user_name = params[:user][:user_name]
+    u.email = params[:user][:email].downcase
+    u.password = params[:user][:password]
+    u.save
+    if u.save
       redirect_to users_path
     else
       redirect_to new_user_path
@@ -26,6 +34,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user.email = params[:user][:email].downcase!
     if @user.update_attributes(user_params)
       redirect_to user_path(@user)
     else

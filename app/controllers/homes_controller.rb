@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomesController < ApplicationController
   def index
   end
 
@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
     session[:user_id] = nil
     redirect_to root_path
   end

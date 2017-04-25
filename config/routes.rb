@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root 'homes#index'
 
   resources :users
   resources :posts
 
-  delete '/logout' => 'home#destroy', as: :logout
-  resources :home, only: [:new, :create]
+  delete '/logout' => 'homes#destroy', as: :logout
+  resources :homes, only: [:new, :create]
 end

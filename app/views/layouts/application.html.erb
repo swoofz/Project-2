@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <h3>
+      <% if logged_in? %>
+        <%= link_to 'Logout', logout_path, method: 'delete' %>
+      <% else %>
+        <%= link_to 'Login', new_home_path %>
+      <% end %>
+  </h3>
     <%= yield %>
   </body>
 </html>
