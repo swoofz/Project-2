@@ -5,9 +5,10 @@
 <!-- Making, changing, or deleting a post -->
 <h2>New Anime</h2>
 <%= form_for @post do |up| %><br>
-<%= up.text_field :title, placeholder: "Anime Name" %><br>
-<%= up.text_area :body, placeholder: "Description"%><br>
-<%= up.submit "Add new Anime to your list" %>
+  <%= up.text_field :title, placeholder: "Anime Name" %><br>
+  <%= up.text_area :body, placeholder: "Description"%><br>
+  <%= up.hidden_field :user_id, :value => @user.id %>
+  <%= up.submit "Add new Anime to your list" %>
 <% end %>
 <!-- Print out each posts title and description of that users -->
 <h2><%= @user.name.capitalize %>'s Anime list</h2>
