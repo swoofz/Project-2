@@ -5,11 +5,13 @@
 <!-- Making, changing, or deleting a post -->
 <h2>New Anime</h2>
 <%= form_for @post do |up| %><br>
+<!-- made the text_fields required in order to post -->
   <%= up.text_field :title, placeholder: "Anime Name", :required => 'required' %><br>
   <%= up.text_area :body, placeholder: "Description", :required => 'required' %><br>
   <%= up.hidden_field :user_id, :value => @user.id %>
   <%= up.submit "Add new Anime to your list" %>
 <% end %>
+
 <!-- Print out each posts title and description of that users -->
 <h2><%= @user.name.capitalize %>'s Anime list</h2>
 <article>
@@ -19,5 +21,9 @@
     <%= p.updated_at %>
     <%= link_to "Edit Post", edit_post_path(p) %>
     <%= link_to 'Delete', p, method: :delete %>
+    <%= form_for @comment do |c| %>
+      <%= c.text_area :body %>
+      <%= c.submit %>
+    <% end %>
   <% end %>
 </article>
