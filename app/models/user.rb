@@ -9,4 +9,6 @@ class User < ApplicationRecord
   allow_destroy: true,
   # No post will be able to post without and title and a body/description
   reject_if:lambda {|attr| attr[:title].blank? or attr[:body].blank?}
+
+  has_many :comments
 end

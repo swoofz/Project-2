@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :posts
+  resources :comments
 
   delete '/logout' => 'homes#destroy', as: :logout
   resources :homes, only: [:new, :create]
@@ -30,3 +31,11 @@ end
 # logout DELETE /logout(.:format)         homes#destroy
 # homes POST   /homes(.:format)          homes#create
 # new_home GET    /homes/new(.:format)      homes#new
+# comments GET    /comments(.:format)          comments#index
+#          POST   /comments(.:format)          comments#create
+# new_comment GET    /comments/new(.:format)      comments#new
+# edit_comment GET    /comments/:id/edit(.:format) comments#edit
+#  comment GET    /comments/:id(.:format)      comments#show
+#          PATCH  /comments/:id(.:format)      comments#update
+#          PUT    /comments/:id(.:format)      comments#update
+#          DELETE /comments/:id(.:format)      comments#destroy
