@@ -1,4 +1,4 @@
-<h1><%= @user.name.capitalize %> Profile Page</h1>
+<h1><%= @user.name.capitalize %>'s Profile Page</h1>
 <%= link_to "Feed", users_path %><br>
 <%= link_to "Edit Info", edit_user_path %>
 
@@ -16,5 +16,8 @@
   <% @user.posts.each do |p| %>
     <h4><%= p.title %><br></h4>
     <%= p.body %><br>
+    <%= p.updated_at %>
+    <%= link_to "Edit Post", edit_post_path(p) %>
+    <%= link_to 'Delete', p, method: :delete %>
   <% end %>
 </article>

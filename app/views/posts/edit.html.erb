@@ -1,8 +1,9 @@
-<h1>Post#edit</h1>
-<p>Find me in app/views/post/edit.html.erb</p>
+<h1>Change Post Info</h1>
 
 <%= form_for @post do |f| %>
-  <%= f.text_field(:title, placeholder: 'Anime Name') %>
-  <%= f.text_field(:body, placeholder: 'Body') %>
+  <%= f.label :title %>
+    <%= f.text_field(:title, placeholder: 'Anime Name') %><br>
+  <%= f.label :body %>
+    <%= f.text_area(:body, placeholder: 'Body') %><br>
   <%= f.submit "Change That Post" %>
 <% end %>

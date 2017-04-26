@@ -26,6 +26,13 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+    u = @post.user.id
+    if @post.update_attributes(post_params)
+      redirect_to user_path(u)
+    else
+      redirect_to edit_post_path
+    end
   end
 
   def destroy
