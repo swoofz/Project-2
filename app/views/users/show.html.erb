@@ -5,8 +5,8 @@
 <!-- Making, changing, or deleting a post -->
 <h2>New Anime</h2>
 <%= form_for @post do |up| %><br>
-  <%= up.text_field :title, placeholder: "Anime Name" %><br>
-  <%= up.text_area :body, placeholder: "Description"%><br>
+  <%= up.text_field :title, placeholder: "Anime Name", :required => 'required'%><br>
+  <%= up.text_area :body, placeholder: "Description", :required => 'required'%><br>
   <%= up.hidden_field :user_id, :value => @user.id %>
   <%= up.submit "Add new Anime to your list" %>
 <% end %>
