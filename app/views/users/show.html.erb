@@ -17,12 +17,24 @@
   <% @user.posts.each do |p| %>
     <h4><%= p.title %><br></h4>
     <%= p.body %><br>
-    <%= p.updated_at %>
+    posted <%= time_ago_in_words p.updated_at %> ago<br>
     <%= link_to "Edit Post", edit_post_path(p) %>
-    <%= link_to 'Delete', p, method: :delete %>
+    <%= link_to 'Delete', p, method: :delete %><br><br>
+    <% p.comments.each do |pc| %>
+    <%= link_to pc.user.user_name, user_path(pc.user) %><br>
+    <div>
+      <%= pc.body %><br>
+      left comment <%= time_ago_in_words pc.created_at %> ago
+      <%= link_to method: :delete, class: "btn btn-default" do %>
+        <div class="glyphicon glyphicon-remove"></div>
+      <% end %>
+    </div>
+    <% end %>
     <%= form_for @comment do |c| %>
-      <%= c.text_area :body, placeholder: "Comment here" %>
+      <%= c.text_area :body, placeholder: "Comment here", required: true %><br>
+        <%= c.hidden_field :post_id, :value => p.id %>
       <%= c.submit %>
     <% end %>
   <% end %>
 </article>
+<!-- User.first.posts.last.comments.create body:"This is retarded", user_id: 1 -->

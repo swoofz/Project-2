@@ -1,13 +1,18 @@
 class CommentsController < ApplicationController
+
   def new
     @comment = Comment.new
   end
 
   def create
     @comment = Comment.new(comment_params)
-    c = @comment.post.id
+    @comment.body = params[:comment][:body]
+    @comment.user_id = current_user.id
+    # @comment.post_id =
+    @comment.save
+    # c = @comment.user.id
     if @comment.save
-      redirect_to user_path(c)
+      redirect_to :back
     else
       redirect_to new_comment_path
     end
@@ -15,7 +20,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    @comment.delete
     redirect_to :back
   end
 
