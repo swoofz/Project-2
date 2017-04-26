@@ -1,5 +1,4 @@
 <h1><%= @user.name.capitalize %>'s Profile Page</h1>
-<%= link_to "Feed", users_path %><br>
 <%= link_to "Edit Info", edit_user_path %>
 
 <!-- Making, changing, or deleting a post -->
@@ -7,7 +6,7 @@
 <%= form_for @post do |up| %><br>
 <!-- made the text_fields required in order to post -->
   <%= up.text_field :title, placeholder: "Anime Name", :required => 'required' %><br>
-  <%= up.text_area :body, placeholder: "Description", :required => 'required' %><br>
+  <%= up.text_area :body, placeholder: "What about the anime do you want to share?", :required => 'required' %><br>
   <%= up.hidden_field :user_id, :value => @user.id %>
   <%= up.submit "Add new Anime to your list" %>
 <% end %>
@@ -22,7 +21,7 @@
     <%= link_to "Edit Post", edit_post_path(p) %>
     <%= link_to 'Delete', p, method: :delete %>
     <%= form_for @comment do |c| %>
-      <%= c.text_area :body %>
+      <%= c.text_area :body, placeholder: "Comment here" %>
       <%= c.submit %>
     <% end %>
   <% end %>

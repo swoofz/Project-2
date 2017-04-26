@@ -6,17 +6,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
   </head>
 
   <body>
+    <%= render "partials/navbar" %>
     <!-- checking if someone logged in or not and change the button accordingly to login or loggout -->
-    <h3>
-      <% if logged_in? %>
-        <%= link_to 'Logout', logout_path, method: 'delete' %>
-      <% else %>
-        <%= link_to 'Login', new_home_path %>
-      <% end %>
-  </h3>
   <div class="container">
     <%= yield %>
   </div>

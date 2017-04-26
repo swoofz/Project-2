@@ -1,4 +1,4 @@
-<h1>User Feed Page</h1>
+<h1>See what animes are out there</h1>
 
 <!-- <article>
   <% @users.each do |u| %>
@@ -10,11 +10,9 @@
 <!-- print out each users posts and how long ago it was posted by with user that posted it -->
 <% @posts.each do |pr| %>
   <article>
-    <h5>Posted By: <%= link_to(pr.user.name, user_path(pr.user)) %></h5>
+    <h5>Posted By: <%= link_to(pr.user.user_name, user_path(pr.user)) %></h5>
     <h4>Anime: <%= pr.title %></h4>
     <p>Description: <%= pr.body %></p>
     <h6>about <%= time_ago_in_words(pr.created_at) %> ago</h6>
   </article>
 <% end %>
-
-<%= link_to "Home Page", root_path %>
