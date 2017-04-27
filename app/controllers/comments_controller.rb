@@ -8,9 +8,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.body = params[:comment][:body]
     @comment.user_id = current_user.id
-    # @comment.post_id =
     @comment.save
-    # c = @comment.user.id
     if @comment.save
       redirect_to :back
     else
@@ -20,7 +18,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.delete
+    @comment.destroy
     redirect_to :back
   end
 
