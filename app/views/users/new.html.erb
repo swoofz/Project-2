@@ -1,19 +1,42 @@
 <h1>Create New User</h1>
-<p>Find me in app/views/user/new.html.erb</p>
 
-<%= form_for @user do |u| %>
-  <%= u.label :name %>
-    <%= u.text_field :name, placeholder: "Name here" %><br>
-  <%= u.label :user_name %>
-    <%= u.text_field :user_name, placeholder: "User Name" %><br>
-  <%= u.label :email %>
-    <%= u.text_field :email, placeholder: "Email" %><br>
-  <%= u.label :password %>
-    <%= u.password_field :password, placeholder: "Password" %><br>
-  <%= u.label :password_confimation %>
-    <%= u.password_field :password_confirmation, placeholder: "Confirm your password" %><br>
-  <%= u.submit "Create an Account" %>
+<%= form_for @user, :html => {class: 'new_user form-horizontal'} do |u| %>
+<div class="row"><legend class="col-sm-4 col-sm-offset-4">Create Account:</legend></div>
+  <fieldset>
+    <div class="form-group">
+      <%= u.label :name, 'Name', class: 'col-sm-4 control-label' %>
+      <div class="col-sm-5" style="margin-bottom: -32px;">
+        <%= u.text_field :name, class: 'form-control', placeholder: "Name here" %><br>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= u.label :user_name, 'User Name', class: 'col-sm-4 control-label' %>
+      <div class="col-sm-5" style="margin-bottom: -32px;">
+        <%= u.text_field :user_name, class: 'form-control', placeholder: "User Name", required: true %><br>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= u.label :email, 'Email', class: 'col-sm-4 control-label' %>
+      <div class="col-sm-5" style="margin-bottom: -32px;">
+        <%= u.text_field :email, class: 'form-control', placeholder: "Email" %><br>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= u.label :password, 'Password', class: 'col-sm-4 control-label' %>
+      <div class="col-sm-5" style="margin-bottom: -32px;">
+        <%= u.password_field :password, class: 'form-control', placeholder: "Password" %><br>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= u.label :password_confimation, 'Confirm Password', class: 'col-sm-4 control-label' %>
+      <div class="col-sm-5" style="margin-bottom: -32px;">
+        <%= u.password_field :password_confirmation, class: 'form-control', placeholder: "Confirm your password" %><br>
+      </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 50px;">
+      <div class="col-sm-8 col-sm-offset-4">
+        <%= u.submit "Create an Account", class: 'btn btn-success' %>
+      </div>
+    </div>
+  </fieldset>
 <% end %>
-
-<%= link_to "Home Page", root_path %><br>
-<%= link_to "User Feed Page", users_path %>

@@ -1,26 +1,27 @@
 <h1>Login in Page</h1>
 
-
-<%= form_tag homes_path do %>
-	<div>Sign In:</div>
-    <fieldset>
-	    <div>
-	        <%= label_tag :email, 'Email' %>
-		    <div>
-		        <%= text_field_tag :email, params[:email] %>
-		    </div>
-	    </div>
-	    <div>
-	        <%= label_tag :password, 'Password' %>
-		    <div>
-		        <%= password_field_tag :password, nil %>
-		    </div>
-	    </div>
-	    <div>
-	        <div>
-	            <%= submit_tag 'Log in' %>
-		        <%= link_to "Don't have an account?", new_user_path %>
-	        </div>
-	    </div>
-    </fieldset>
+<%= form_tag homes_path, {class: 'form-horizontal'} do %>
+	<div class="row"><legend class="col-sm-4 col-sm-offset-4">Sign In</lengend></div>
+  <fieldset>
+  	<div class="form-group">
+      <%= label_tag :email, 'Email', class: 'col-sm-4 control-label' %>
+			<div class="col-sm-5" style="margin-bottom: -5px;">
+				<%= text_field_tag :email, params[:email], class: 'form-control' %>
+			</div>
+		</div>
+		<div class="form-group">
+			<%= label_tag :password, 'Password', class: 'col-sm-4 control-label' %>
+			<div class="col-sm-5" style="margin-bottom: -5px;">
+				<%= password_field_tag :password, nil, class: 'form-control' %>
+			</div>
+		</div>
+		<div>
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-4">
+					<%= submit_tag 'Log in', class: 'btn btn-success' %>
+					<%= link_to "Don't have an account?", new_user_path, class: 'btn btn-primary' %>
+				</div>
+			</div>
+		</div>
+	</fieldset>
 <% end %>

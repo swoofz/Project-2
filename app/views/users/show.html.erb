@@ -1,52 +1,87 @@
-<h1><%= @user.name.capitalize %>'s Profile Page</h1>
-<% if user_allowed %>
-<%= link_to "Edit Info", edit_user_path %>
-<% end %>
+<h1><%= @user.user_name.capitalize %>'s Profile Page</h1>
 
 <!-- Making, changing, or deleting a post -->
-<h2>New Anime</h2>
 <% if user_allowed %>
-<%= form_for @post do |up| %><br>
-<!-- made the text_fields required in order to post -->
-  <%= up.text_field :title, placeholder: "Anime Name", :required => 'required' %><br>
-  <%= up.text_area :body, placeholder: "What about the anime do you want to share?", :required => 'required' %><br>
-  <%= up.hidden_field :user_id, :value => @user.id %>
-  <%= up.submit "Add new Anime to your list" %>
-<% end %>
+  <%= form_for @post, :html => {class: 'new_post form-horizontal'} do |up| %><br>
+    <div class="row"><legend class="col-sm-4 col-sm-offset-4">New Anime</legend></div>
+    <fieldset>
+      <div class="form-group">
+        <%= up.label :title, 'Title', class: 'col-sm-4 control-label' %>
+        <div class="col-sm-6" style="margin-bottom: -25px;">
+                      <!-- made the text_fields required in order to post -->
+          <%= up.text_field :title, class: 'form-control', placeholder: "Anime Name", :required => 'required' %><br>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= up.label :body, 'Description', class: 'col-sm-4 control-label' %>
+        <div class="col-sm-6" style="margin-bottom: -25px;">
+          <%= up.text_area :body, class: 'form-control', placeholder: "What about the anime do you want to share?", :required => 'required' %><br>
+        </div>
+      </div>
+      <%= up.hidden_field :user_id, :value => @user.id %>
+      <div class="form-group">
+        <div class="col-sm-8 col-sm-offset-5">
+          <%= up.submit "Add new Anime to your list", class: 'btn btn-success' %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
 <% end %>
 
-<!-- Print out each posts title and description of that users -->
-<h2><%= @user.name.capitalize %>'s Anime list</h2>
-<article>
-  <% @user.posts.each do |p| %>
-    <h3><%= p.title %><br></h3>
-    <span style="color: yellow;"><%= p.body %><br>
-    posted <%= time_ago_in_words p.updated_at %> ago<br></span>
-    <% if user_allowed %>
-    <span style="margin-right: 10px; margin-left: 10px;"><%= link_to "Edit Post", edit_post_path(p) %></span>
-    <%= link_to 'Delete', p, method: :delete %><br><br>
-    <% end %>
-    <% p.comments.each do |pc| %>
-    <%= link_to pc.user.user_name, user_path(pc.user) %><br>
-    <div>
-      <%= pc.body %><br>
-      left comment <%= time_ago_in_words pc.created_at %> ago
-      <% if current_user.id == pc.user_id %>
-        <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
-          <div class="glyphicon glyphicon-remove"></div>
-        <% end %>
-      <% elsif user_allowed  %>
-        <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
-          <div class="glyphicon glyphicon-remove"></div>
-          <% end %>
-      <% end %>
+            <!-- Print out each posts title and description of that users -->
+      <h2><%= @user.user_name.capitalize %>'s Anime list</h2>
+      <article>
+        <ul class="media-list">
+          <li class="media">
+              <% @user.posts.each do |p| %>
+                <h3><%= p.title %><br></h3>
+                <%= p.body %><br>
+                <span>posted <%= time_ago_in_words p.updated_at %> ago</span><br>
+                <% if user_allowed %>
+                  <span style="margin-right: 10px; margin-left: 10px;"><%= link_to "Edit Post", edit_post_path(p) %></span>
+                  <%= link_to 'Delete', p, method: :delete %><br><br>
+                <% end %>
+                <% p.comments.each do |pc| %>
+                  <%= link_to pc.user.user_name, user_path(pc.user) %><br>
+                  <div>
+                    <span style="color: #AA6B39;"><%= pc.body %><br>
+                    left comment <%= time_ago_in_words pc.created_at %> ago</span>
+                    <% if current_user.id == pc.user_id %>
+                      <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
+                        <div class="glyphicon glyphicon-remove"></div>
+                      <% end %>
+                    <% elsif user_allowed  %>
+                      <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
+                        <div class="glyphicon glyphicon-remove"></div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <%= form_for @comment do |c| %>
+                  <%= c.text_area :body, placeholder: "Comment here", required: true %><br>
+                    <%= c.hidden_field :post_id, :value => p.id %>
+                  <%= c.submit %>
+                <% end %>
+              <% end %>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+
+<!-- <ul class="media-list">
+  <li class="media">
+    hello
+    <div class="media-left">
+      <a href="#">
+      </a>
     </div>
-    <% end %>
-    <%= form_for @comment do |c| %>
-      <%= c.text_area :body, placeholder: "Comment here", required: true %><br>
-        <%= c.hidden_field :post_id, :value => p.id %>
-      <%= c.submit %>
-    <% end %>
-  <% end %>
-</article>
-<!-- User.first.posts.last.comments.create body:"This is retarded", user_id: 1 -->
+    <div class="media-body">
+      <h4 class="media-heading">super</h4>
+        great
+    </div>
+    <div class="media-right">
+      okay
+    </div>
+  </li>
+</ul> -->
