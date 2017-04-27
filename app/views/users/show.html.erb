@@ -1,8 +1,11 @@
 <h1><%= @user.name.capitalize %>'s Profile Page</h1>
+<% if user_allowed %>
 <%= link_to "Edit Info", edit_user_path %>
+<% end %>
 
 <!-- Making, changing, or deleting a post -->
 <h2>New Anime</h2>
+<% if user_allowed %>
 <%= form_for @post do |up| %><br>
 <!-- made the text_fields required in order to post -->
   <%= up.text_field :title, placeholder: "Anime Name", :required => 'required' %><br>
@@ -10,23 +13,32 @@
   <%= up.hidden_field :user_id, :value => @user.id %>
   <%= up.submit "Add new Anime to your list" %>
 <% end %>
+<% end %>
 
 <!-- Print out each posts title and description of that users -->
 <h2><%= @user.name.capitalize %>'s Anime list</h2>
 <article>
   <% @user.posts.each do |p| %>
-    <h4><%= p.title %><br></h4>
-    <%= p.body %><br>
-    posted <%= time_ago_in_words p.updated_at %> ago<br>
+    <h3><%= p.title %><br></h3>
+    <span style="color: yellow;"><%= p.body %><br>
+    posted <%= time_ago_in_words p.updated_at %> ago<br></span>
+    <% if user_allowed %>
     <span style="margin-right: 10px; margin-left: 10px;"><%= link_to "Edit Post", edit_post_path(p) %></span>
     <%= link_to 'Delete', p, method: :delete %><br><br>
+    <% end %>
     <% p.comments.each do |pc| %>
     <%= link_to pc.user.user_name, user_path(pc.user) %><br>
     <div>
       <%= pc.body %><br>
       left comment <%= time_ago_in_words pc.created_at %> ago
-      <%= link_to pc, method: :delete, class: "btn btn-default" do %>
-        <div class="glyphicon glyphicon-remove"></div>
+      <% if current_user.id == pc.user_id %>
+        <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
+          <div class="glyphicon glyphicon-remove"></div>
+        <% end %>
+      <% elsif user_allowed  %>
+        <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
+          <div class="glyphicon glyphicon-remove"></div>
+          <% end %>
       <% end %>
     </div>
     <% end %>
