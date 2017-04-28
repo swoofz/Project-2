@@ -41,6 +41,11 @@
                   <span style="margin-right: 10px; margin-left: 10px;"><%= link_to "Edit Post", edit_post_path(p) %></span>
                   <%= link_to 'Delete', p, method: :delete %><br><br>
                 <% end %>
+                <%= form_for @comment do |c| %>
+                <%= c.text_area :body, placeholder: "Comment here", required: true %><br>
+                <%= c.hidden_field :post_id, :value => p.id %>
+                <%= c.submit %>
+                <% end %>
                 <% p.comments.each do |pc| %>
                   <%= link_to pc.user.user_name, user_path(pc.user) %><br>
                   <div>
@@ -57,31 +62,8 @@
                     <% end %>
                   </div>
                 <% end %>
-                <%= form_for @comment do |c| %>
-                  <%= c.text_area :body, placeholder: "Comment here", required: true %><br>
-                    <%= c.hidden_field :post_id, :value => p.id %>
-                  <%= c.submit %>
-                <% end %>
               <% end %>
             </div>
           </li>
         </ul>
       </article>
-
-
-<!-- <ul class="media-list">
-  <li class="media">
-    hello
-    <div class="media-left">
-      <a href="#">
-      </a>
-    </div>
-    <div class="media-body">
-      <h4 class="media-heading">super</h4>
-        great
-    </div>
-    <div class="media-right">
-      okay
-    </div>
-  </li>
-</ul> -->
