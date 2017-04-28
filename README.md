@@ -4,7 +4,7 @@ Amine Hangout is just a place where anime fan can share and talk about the anime
 
 Go to <a href="https://quiet-citadel-22184.herokuapp.com/">Anime Hangout</a>
 
-<img src="models.png">
+<img src="Models.png">
 
 ## Technologies
 
