@@ -12,6 +12,7 @@ Go to <a href="https://quiet-citadel-22184.herokuapp.com/">Anime Hangout</a>
 * CSS
 * Ruby on Rails
 * Javascript
+* bootstrap
 
 ## User Story
 
