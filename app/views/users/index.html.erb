@@ -1,21 +1,44 @@
-<h1>See what animes are out there</h1>
 
 <!-- print out each users posts and how long ago it was posted by with user that posted it -->
-<% @posts.each do |pr| %>
-  <article>
-    <ul class="media-list">
-      <li class="media">
-        <div class="media-left">
-          <h5><%= link_to(pr.user.user_name, user_path(pr.user)) %></h5>
-        </div>
-        <div class="media-body">
-          <h4>Anime: <%= pr.title %></h4>
-          <p>Description: <%= pr.body %></p>
-        </div>
-        <div class="media-right">
-          <h6>about <%= time_ago_in_words(pr.created_at) %> ago</h6><br>
-        </div>
-      </li>
-    </ul>
-  </article>
-<% end %>
+<div class="row">
+  <div class="col-md-3">
+    <br>
+    <h4>Maybe like a facebook sidebar here but with whatever content I have.</h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+  <div class="col-md-6">
+    <h1 class="feed-title">See what animes are out there</h1>
+    <div class="feed-container">
+      <% @posts.each do |pr| %>
+
+        <article class="feed">
+          <div class="content">
+            <ul class="media-list">
+              <li class="media">
+                <div class="media-left content">
+                  <h4><%= link_to(pr.user.user_name, user_path(pr.user)) %></h4>
+                  <img width="70" height="70px" src="http://img11.deviantart.net/3e49/i/2013/297/b/4/chibi_kai_hitanji_by_anthurishinkix-d6rpnt3.png" alt="Anime filler">
+                </div>
+                <div class="media-body">
+                  <h4>Watched <span style="color: #375a7f;"><%= pr.title %></span></h4>
+                  <p><%= pr.body %></p>
+                </div>
+                <div class="time">
+                  <h6>about <%= time_ago_in_words(pr.created_at) %> ago</h6><br>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+      <% end %>
+    </div>
+  </div>
+
+<div class="col-md-3">
+  <br>
+  <h4>Maybe ads stuff goes here.</h4>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+</div>

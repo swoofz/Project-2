@@ -1,69 +1,118 @@
-<h1><%= @user.user_name.capitalize %>'s Profile Page</h1>
+<div>
+  <h1 style="text-align: center;"><%= @user.user_name.capitalize %>'s Profile Page</h1>
+  <img class="move-back" src="http://www.rockswallpaperhd.com/wp-content/uploads/2013/12/Cartoon-girl-picture-fb-timelion-cover-page.png" alt="">
 
 <!-- Making, changing, or deleting a post -->
 <% if user_allowed %>
-  <%= form_for @post, :html => {class: 'new_post form-horizontal'} do |up| %><br>
-    <div class="row"><legend class="col-sm-4 col-sm-offset-4">New Anime</legend></div>
+  <%= form_for @post, :html => {class: 'form-horizontal place'} do |up| %><br>
+    <div class="row"><legend style="margin-left: 15%;" class="">New Anime</legend></div>
     <fieldset>
       <div class="form-group">
-        <%= up.label :title, 'Title', class: 'col-sm-4 control-label' %>
-        <div class="col-sm-6" style="margin-bottom: -25px;">
+        <%= up.label :title, 'Title', class: 'control-label' %>
+        <div class="" style="margin-bottom: -25px;">
                       <!-- made the text_fields required in order to post -->
-          <%= up.text_field :title, class: 'form-control', placeholder: "Anime Name", :required => 'required' %><br>
+          <%= up.text_field :title, class: 'form-control field-size', placeholder: "Anime Name", :required => 'required' %><br>
         </div>
       </div>
       <div class="form-group">
-        <%= up.label :body, 'Description', class: 'col-sm-4 control-label' %>
-        <div class="col-sm-6" style="margin-bottom: -25px;">
-          <%= up.text_area :body, class: 'form-control', placeholder: "What about the anime do you want to share?", :required => 'required' %><br>
+        <%= up.label :body, 'Description', class: 'control-label' %>
+        <div class="" style="margin-bottom: -25px;">
+          <%= up.text_area :body, class: 'form-control field-size', placeholder: "What about the anime do you want to share?", :required => 'required' %><br>
         </div>
       </div>
       <%= up.hidden_field :user_id, :value => @user.id %>
       <div class="form-group">
-        <div class="col-sm-8 col-sm-offset-5">
-          <%= up.submit "Add new Anime to your list", class: 'btn btn-success' %>
+        <div class="">
+          <%= up.submit "Share", class: 'btn btn-success btn-size' %>
         </div>
       </div>
     </fieldset>
   <% end %>
 <% end %>
-
+</div>
             <!-- Print out each posts title and description of that users -->
-      <h2><%= @user.user_name.capitalize %>'s Anime list</h2>
-      <article>
-        <ul class="media-list">
-          <li class="media">
-              <% @user.posts.each do |p| %>
-                <h3><%= p.title %><br></h3>
-                <%= p.body %><br>
-                <span>posted <%= time_ago_in_words p.updated_at %> ago</span><br>
-                <% if user_allowed %>
-                  <span style="margin-right: 10px; margin-left: 10px;"><%= link_to "Edit Post", edit_post_path(p) %></span>
-                  <%= link_to 'Delete', p, method: :delete %><br><br>
-                <% end %>
-                <%= form_for @comment do |c| %>
-                <%= c.text_area :body, placeholder: "Comment here", required: true %><br>
-                <%= c.hidden_field :post_id, :value => p.id %>
-                <%= c.submit %>
-                <% end %>
-                <% p.comments.each do |pc| %>
-                  <%= link_to pc.user.user_name, user_path(pc.user) %><br>
-                  <div>
-                    <span style="color: #AA6B39;"><%= pc.body %><br>
-                    left comment <%= time_ago_in_words pc.created_at %> ago</span>
-                    <% if current_user.id == pc.user_id %>
-                      <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
-                        <div class="glyphicon glyphicon-remove"></div>
-                      <% end %>
-                    <% elsif user_allowed  %>
-                      <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
-                        <div class="glyphicon glyphicon-remove"></div>
-                      <% end %>
+    <div class="row">
+      <div class="col-sm-2">
+        <h4>Probably same list of feture on the feed page</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="col-sm-8">
+        <h4 style="text-align: center;">All of <%= @user.user_name %>'s posts</h4>
+        <div class="post-container">
+          <article class='profile-content'>
+            <ul class="media-list">
+              <li class="media">
+                <div>
+                  <% @user.posts.each do |p| %>
+                    <h3 style="color: #375a7f;"><%= p.title %><br></h3>
+                    <%= p.body %><br>
+
+                    <span> <%= time_ago_in_words p.updated_at %> ago</span><br>
+                    <% if user_allowed %>
+                      <span style="margin-right: 10px; margin-left: 10px;"><%= link_to "Edit Post", edit_post_path(p) %></span>
+                      <%= link_to 'Delete', p, method: :delete %><br><br>
                     <% end %>
-                  </div>
-                <% end %>
-              <% end %>
+
+                    <div class='comment-container'>
+                      <div class='commentBox'>
+                        <div class="comments">
+                          <% p.comments.each do |pc| %>
+                            <%= link_to pc.user.user_name, user_path(pc.user) %><br>
+
+                            <span><%= pc.body %><br>
+                             <span class="time"><%= time_ago_in_words pc.created_at %></span> ago</span>
+
+                            <% if current_user.id == pc.user_id %>
+                              <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
+                                <div class="glyphicon glyphicon-remove"></div>
+
+                              <% end %><br>
+
+                            <% elsif user_allowed  %>
+                              <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
+
+                                <div class="glyphicon glyphicon-remove"></div>
+
+                              <% end %><br>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="comment">
+                        <%= form_for @comment do |c| %>
+                        <%= c.text_area :body, placeholder: "Comment here", required: true, class: 'input' %><br>
+                        <%= c.hidden_field :post_id, :value => p.id %>
+                        <%= c.submit "Leave Comment", class: 'submit' %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <h2 style="text-align: center;"><%= @user.user_name.capitalize %>'s Anime list</h2>
+
+          <div id="list-container">
+            <% @user.posts.each do |p| %>
+              <div style="text-align: center; margin: 3%;">
+                <li style="color: #375a7f; list-style-type: none">
+                  <%= p.title %>
+                </li>
+              </div>
+            <% end  %>
+          </div><br>
+
+        <div class="">
+          <h4>Suggested List</h4>
+          <div id="suggested">
+            <div style="text-align: center; margin: 3%;">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
-          </li>
-        </ul>
-      </article>
+          </div>
+        </div>
+      </div>
+    </div>

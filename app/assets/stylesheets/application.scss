@@ -14,3 +14,95 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+.input {
+  margin: 1px;
+  width: 250px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.submit {
+  margin: 1px;
+  width: 250px;
+}
+.comment-container {
+  margin: 0 auto;
+}
+.commentBox {
+  margin: 2% auto;
+  // border: 1px solid rgb(48,48,45);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px 3px #0ce3ac;
+  background-color: #222222;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  height: 150px;
+  max-width: 500px;
+  width: 75%;
+}
+.comments {
+  text-align: left;
+  margin: 1%;
+}
+.profile-content {
+  text-align: center;
+}
+.feed-container {
+  overflow-y: auto;
+  max-height: 75%;
+  height: 560px;
+  bottom: 0px;
+}
+.feed {
+  margin: 2% 2%;
+  border: 3px solid #0ce3ac;
+  font-size: 20px;
+}
+.feed-title {
+  text-align: center;
+}
+.content {
+  margin: 0 2%;
+}
+.time {
+  text-align: right;
+  margin-top: -2%;
+  margin-bottom: -5%;
+}
+.item > img {
+  width: 100%;
+}
+.move-back {
+  width: 80%;
+  position: absolute;
+  z-index: -1;
+}
+.place {
+  margin-left: 10%;
+  margin-bottom: 10%;
+}
+.field-size {
+  min-width: 10%;
+  width: 50% !important;
+}
+.btn-size {
+  margin-left: 10%;
+  width: 25%;
+}
+.post-container {
+  border: 1px solid #22222;
+  height: 600px;
+  overflow-y: auto;
+}
+#list-container {
+  border: 1px solid #0ce3ac;
+  width: 150px;
+  height: 250px;
+  overflow-y: auto;
+}
+#suggested {
+  border: 1px solid #0ce3ac;
+  width: 150px;
+  height: 250px;
+  overflow-y: auto;
+}
