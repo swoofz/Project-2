@@ -15,5 +15,9 @@
   <div class="container">
     <%= yield %>
   </div>
+
+  <% if current_page?(url_for(:controller => 'homes', :action => 'index')) %>
+    <%= render "partials/footer" %>
+  <% end %>
   </body>
 </html>
