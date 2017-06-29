@@ -91,7 +91,7 @@
 }
 .post-container {
   border: 1px solid #22222;
-  height: 600px;
+  height: 650px;
   overflow-y: auto;
 }
 #list-container {
@@ -116,4 +116,7 @@
 }
 :hover.feedback{
   text-decoration: none;
+}
+li {
+  list-style: none;
 }

@@ -33,7 +33,7 @@
             <!-- Print out each posts title and description of that users -->
     <div class="row">
       <div class="col-sm-2">
-        <h4>Probably same list of feture on the feed page</h4>
+        <h4>Probably same list of feature on the feed page</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
       <div class="col-sm-8">
@@ -102,10 +102,8 @@
 
           <div id="list-container">
             <% @user.posts.each do |p| %>
-              <div style="text-align: center; margin: 3%;">
-                <li style="color: #375a7f; list-style-type: none">
-                  <%= p.title %>
-                </li>
+              <div style="text-align: center; margin: 3%; color: #375a7f;">
+                <li><%= p.title %></li>
               </div>
             <% end  %>
           </div><br>
@@ -114,12 +112,13 @@
           <h4>Suggested List</h4>
           <div id="suggested">
             <div style="text-align: center; margin: 3%; color: #0ce3ac;">
-              <li style="list-style-type: none">Dragon Ball Super</li>
-              <li style="list-style-type: none">Servamp</li>
-              <li style="list-style-type: none">Renai Boukun</li>
-              <li style="list-style-type: none">Attack on Titan</li>
+              <li>Dragon Ball Super</li>
+              <li>Servamp</li>
+              <li>Renai Boukun</li>
+              <li>Attack on Titan</li>
             </div>
           </div>
+          <p>Putting input field here to suggest animes when have a friend feature.</p>
         </div>
       </div>
     </div>
