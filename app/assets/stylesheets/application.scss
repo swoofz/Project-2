@@ -101,8 +101,19 @@
   overflow-y: auto;
 }
 #suggested {
-  border: 1px solid #0ce3ac;
+  border: 1px solid #375a7f;
   width: 150px;
   height: 250px;
   overflow-y: auto;
+}
+.btn-sm {
+  float: right;
+}
+.feedback {
+  margin-right: 2%;
+  color: #375a7f;
+  text-decoration: none;
+}
+:hover.feedback{
+  text-decoration: none;
 }

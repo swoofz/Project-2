@@ -57,24 +57,28 @@
                       <div class='commentBox'>
                         <div class="comments">
                           <% p.comments.each do |pc| %>
-                            <%= link_to pc.user.user_name, user_path(pc.user) %><br>
+                            <%= link_to pc.user.user_name, user_path(pc.user) %>
 
-                            <span><%= pc.body %><br>
-                             <span class="time"><%= time_ago_in_words pc.created_at %></span> ago</span>
 
                             <% if current_user.id == pc.user_id %>
-                              <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
+                              <%= link_to pc, method: :delete, class: "btn btn-sm" do %>
                                 <div class="glyphicon glyphicon-remove"></div>
 
                               <% end %><br>
 
                             <% elsif user_allowed  %>
-                              <%= link_to pc, method: :delete, class: "btn btn-sm btn-default" do %>
+                              <%= link_to pc, method: :delete, class: "btn btn-sm" do %>
 
                                 <div class="glyphicon glyphicon-remove"></div>
 
                               <% end %><br>
                             <% end %>
+
+                            <span><%= pc.body %><br>
+                              <a class="feedback" href="#">Like</a>
+                              <a class="feedback" href="#">Dislike</a>
+                              <span style="float: right"><%= time_ago_in_words pc.created_at %> ago</span><br>
+
                           <% end %>
                         </div>
                       </div>
@@ -109,8 +113,11 @@
         <div class="">
           <h4>Suggested List</h4>
           <div id="suggested">
-            <div style="text-align: center; margin: 3%;">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div style="text-align: center; margin: 3%; color: #0ce3ac;">
+              <li style="list-style-type: none">Dragon Ball Super</li>
+              <li style="list-style-type: none">Servamp</li>
+              <li style="list-style-type: none">Renai Boukun</li>
+              <li style="list-style-type: none">Attack on Titan</li>
             </div>
           </div>
         </div>
