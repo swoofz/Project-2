@@ -49,15 +49,21 @@
             <ul class="media-list">
               <li class="media">
                 <div>
-                  <% @user.posts.each do |p| %>
-                    <h3 style="color: #375a7f;"><%= p.title %><br></h3>
-                    <%= p.body %><br>
+                    <% @user.posts.each do |p| %>
+                      <h3 style="margin-bottom: -10px;"><span style="color: #375a7f;"><%= p.title %></span>
+                      <% if user_allowed %>
+                        <%= link_to edit_post_path(p), class: "btn btn-sm" do %>
+                          <div class="glyphicon glyphicon-pencil"></div>
+                        <% end %>
+                        <%= link_to p, method: :delete, class: "btn btn-sm" do %>
+                          <div class="glyphicon glyphicon-remove"></div></h3>
+                        <% end %><br>
+                        <%= p.body %><br>
 
-                    <span> <%= time_ago_in_words p.updated_at %> ago</span><br>
-                    <% if user_allowed %>
-                      <span style="margin-right: 10px; margin-left: 10px;"><%= link_to "Edit Post", edit_post_path(p) %></span>
-                      <%= link_to 'Delete', p, method: :delete %><br><br>
-                    <% end %>
+                        <a class="feedback" href="#">Like</a>
+                        <a class="feedback" href="#">Dislike</a>
+                        <span style="float: right; margin-right: 100px;"> <%= time_ago_in_words p.updated_at %> ago</span><br>
+                      <% end %>
 
                     <div class='comment-container'>
                       <div class='commentBox'>
