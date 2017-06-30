@@ -1,9 +1,15 @@
 <div>
+  <% if !user_allowed %>
   <h1 style="text-align: center;"><%= @user.user_name.capitalize %>'s Profile Page</h1>
-  <img class="move-back" src="http://www.rockswallpaperhd.com/wp-content/uploads/2013/12/Cartoon-girl-picture-fb-timelion-cover-page.png" alt="">
+  <div class="item">
+    <img src="http://www.rockswallpaperhd.com/wp-content/uploads/2013/12/Cartoon-girl-picture-fb-timelion-cover-page.png" alt="">
+  </div><br>
+  <% end %>
 
 <!-- Making, changing, or deleting a post -->
 <% if user_allowed %>
+  <h1 style="text-align: center;"><%= @user.user_name.capitalize %>'s Profile Page</h1>
+  <img class="move-back" src="http://www.rockswallpaperhd.com/wp-content/uploads/2013/12/Cartoon-girl-picture-fb-timelion-cover-page.png" alt="">
   <%= form_for @post, :html => {class: 'form-horizontal place'} do |up| %><br>
     <div class="row"><legend style="margin-left: 15%;" class="">New Anime</legend></div>
     <fieldset>
