@@ -50,20 +50,23 @@
               <li class="media">
                 <div>
                     <% @user.posts.each do |p| %>
+                    <% if user_allowed %>
                       <h3 style="margin-bottom: -10px;"><span style="color: #375a7f;"><%= p.title %></span>
-                      <% if user_allowed %>
                         <%= link_to edit_post_path(p), class: "btn btn-sm" do %>
                           <div class="glyphicon glyphicon-pencil"></div>
                         <% end %>
                         <%= link_to p, method: :delete, class: "btn btn-sm" do %>
                           <div class="glyphicon glyphicon-remove"></div></h3>
                         <% end %><br>
+                      <% end %>
+                      <% if !user_allowed %>
+                        <h3><span style="color: #375a7f;"><%= p.title %></span></h3>
+                      <% end %>
                         <%= p.body %><br>
 
                         <a class="feedback" href="#">Like</a>
                         <a class="feedback" href="#">Dislike</a>
                         <span style="float: right; margin-right: 100px;"> <%= time_ago_in_words p.updated_at %> ago</span><br>
-                      <% end %>
 
                     <div class='comment-container'>
                       <div class='commentBox'>
